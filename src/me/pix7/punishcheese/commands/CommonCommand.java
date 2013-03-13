@@ -1,5 +1,6 @@
 package me.pix7.punishcheese.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,16 @@ public class CommonCommand implements CommandExecutor {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+		
+		if(cmd.getName().equalsIgnoreCase("punishcheese")){
+		
+			String prefix = ChatColor.translateAlternateColorCodes('&', (pl.getConfig().getString("PunishCheesePrefix")));	
+			sender.sendMessage(prefix+"PunishCheese!");
+			//TODO add more info
+			
+			return true;
+		
+		}
 		
 		return false;
 		

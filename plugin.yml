@@ -1,0 +1,10 @@
+name: PunishCheese
+main: me.pix7.punishcheese.PunishCheese
+version: 1
+
+commands:
+  punishcheese:
+    description: Show all commands in this plugin.
+    usage: /punishcheese
+    permission: punishcheese.admin
+    permission-message: You don't have permissions.
