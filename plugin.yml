@@ -8,3 +8,13 @@ commands:
     usage: /punishcheese
     permission: punishcheese.admin
     permission-message: You don't have permissions.
+  addrule:
+    description: Add rule to database.
+    usage: /addrule <RuleID> <Short-Description>
+    permission: punishcheese.admin
+    permission-message: You don't have permissions.
+  addruledetail:
+    description: Add rule detail to database.
+    usage: /addruledetail <RuleID> <Description>
+    permission: punishcheese.admin
+    permission-message: You don't have permissions.
