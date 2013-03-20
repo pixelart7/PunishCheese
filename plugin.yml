@@ -1,6 +1,7 @@
 name: PunishCheese
 main: me.pix7.punishcheese.PunishCheese
 version: 1
+author: PixelArt7
 
 commands:
   punishcheese:
@@ -17,4 +18,9 @@ commands:
     description: Add rule detail to database.
     usage: /addruledetail <RuleID> <Description>
     permission: punishcheese.admin
+    permission-message: You don't have permissions.
+  rules:
+    description: Show all rules of this server.
+    usage: /rules
+    permission: punishcheese.member
     permission-message: You don't have permissions.

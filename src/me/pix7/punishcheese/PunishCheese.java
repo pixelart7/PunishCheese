@@ -15,6 +15,7 @@ public class PunishCheese extends JavaPlugin{
 		getCommand("addrule").setExecutor(new me.pix7.punishcheese.commands.DatabaseCommand(this));
 		getCommand("addruledetail").setExecutor(new me.pix7.punishcheese.commands.DatabaseCommand(this));
 		
+		//TODO Change to get these from config
 		String username = "root";
 		String password = "pixel";
 		String db = "bukkit";
@@ -22,8 +23,15 @@ public class PunishCheese extends JavaPlugin{
 		String port = "3306";
 		
 		MySQLAPI sql = new MySQLAPI(username, password, db, ip, port);
+		
 		try {
 			sql.update("CREATE TABLE IF NOT EXISTS `punishcheese_rules` (`ruleid` int(3) NOT NULL, `shortdetail` varchar(256) NOT NULL, `detail` varchar(512) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			sql.update("CREATE TABLE IF NOT EXISTS `punishcheese_log` (`id` int(7) NOT NULL AUTO_INCREMENT, `username` varchar(20) NOT NULL, `operation` varchar(20) NOT NULL, `rulebreaker` varchar(20) NOT NULL, `ruleid` int(3) NOT NULL, `reason` varchar(256) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
