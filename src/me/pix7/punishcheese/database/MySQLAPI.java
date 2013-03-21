@@ -4,6 +4,9 @@ import java.sql.*;
 /**
  * @author iSuzutsuki
  * MySQL Manager Class
+ * 
+ * Use in PixelArt7's plugin with permission to use and edit from author.
+ * 
  */
 public class MySQLAPI {
 
@@ -78,12 +81,12 @@ public class MySQLAPI {
     			return 0;
     		}
     		try {
-    	StringBuilder sqlurl = new StringBuilder();
-    	sqlurl.append("jdbc:mysql://").append(ip).append(":").append(port).append("/").append(db).append("?user=").append(username).append("&password=").append(password);
-    	Connection con = DriverManager.getConnection(sqlurl.toString());
-        stmt = con.createStatement();
-        int i = stmt.executeUpdate(query);
-        return i;
+		    	StringBuilder sqlurl = new StringBuilder();
+		    	sqlurl.append("jdbc:mysql://").append(ip).append(":").append(port).append("/").append(db).append("?user=").append(username).append("&password=").append(password);
+		    	Connection con = DriverManager.getConnection(sqlurl.toString());
+		        stmt = con.createStatement();
+		        int i = stmt.executeUpdate(query);
+		        return i;
     		}catch(Exception e){
     			e.printStackTrace();
     			throw new SQLException("Couldn't complete query");

@@ -1,0 +1,11 @@
+##
+# PunishCheese Config
+# by PixelArt7
+##
+
+database:
+  username: root
+  password: password
+  databasename: minecraft
+  ip: localhost
+  port: 3306
