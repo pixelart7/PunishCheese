@@ -18,7 +18,7 @@ public class DatabaseCommand implements CommandExecutor{
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		
-		PunishLogger logger = new PunishLogger(this);
+		PunishLogger PunishLogger = new PunishLogger(pl);
 	
 		if(cmd.getName().equalsIgnoreCase("addrule")){
 			

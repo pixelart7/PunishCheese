@@ -11,12 +11,12 @@ commands:
     permission-message: You don't have permissions.
   addrule:
     description: Add rule to database.
-    usage: /addrule <RuleID> <Short-Description>
+    usage: /addrule <RuleId> <Short-Description>
     permission: punishcheese.admin
     permission-message: You don't have permissions.
   addruledetail:
     description: Add rule detail to database.
-    usage: /addruledetail <RuleID> <Description>
+    usage: /addruledetail <RuleId> <Description>
     permission: punishcheese.admin
     permission-message: You don't have permissions.
   rules:

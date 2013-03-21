@@ -19,7 +19,7 @@ public class CommonCommand implements CommandExecutor {
 		
 		if(cmd.getName().equalsIgnoreCase("punishcheese")){
 		
-			String prefix = ChatColor.translateAlternateColorCodes('&', (pl.getConfig().getString("PunishCheesePrefix")));	
+			String prefix = ChatColor.translateAlternateColorCodes('&', (pl.getConfig().getString("temp.PunishCheesePrefix")));	
 			sender.sendMessage(prefix+"PunishCheese!");
 			//TODO add more info
 			
