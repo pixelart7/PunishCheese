@@ -3,7 +3,7 @@ package me.pix7.punishcheese.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PunishLogger {
+public class PunishDatabase {
 	
 	me.pix7.punishcheese.PunishCheese pl;
 	String dbusername;
@@ -15,7 +15,7 @@ public class PunishLogger {
 	String db_rules;
 	String prefix;
 	
-	public PunishLogger(me.pix7.punishcheese.PunishCheese plugin) {
+	public PunishDatabase(me.pix7.punishcheese.PunishCheese plugin) {
 
 		this.pl = plugin;
 		
@@ -78,6 +78,20 @@ public class PunishLogger {
 				throw e;
 			}
 		}
+		
+	}
+	
+	public boolean addRuleDetail(int ruleId, String detail) throws SQLException {
+		
+		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
+		ResultSet rs = sql.query("SELECT * FROM "+db_rules+" WHERE ruleid="+ruleId);
+		if(!(rs.last())){
+			return false;
+		}else{
+			sql.update("UPDATE "+db_rules+" SET detail='"+detail+"' WHERE ruleid='"+ruleId+"'");
+			return true;
+		}
+		
 	}
 
 }
