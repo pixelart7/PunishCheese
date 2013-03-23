@@ -1,5 +1,6 @@
 package me.pix7.punishcheese.database;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PunishLogger {
@@ -10,6 +11,9 @@ public class PunishLogger {
 	String db;
 	String ip;
 	String port;
+	String db_log;
+	String db_rules;
+	String prefix;
 	
 	public PunishLogger(me.pix7.punishcheese.PunishCheese plugin) {
 
@@ -20,6 +24,10 @@ public class PunishLogger {
 		this.db = pl.getConfig().getString("database.databasename");
 		this.ip = pl.getConfig().getString("database.ip");
 		this.port = pl.getConfig().getString("database.port");
+		
+		this.db_log = pl.getConfig().getString("temp.db_log");
+		this.db_rules = pl.getConfig().getString("temp.db_rules");
+		this.prefix = pl.getConfig().getString("temp.PunishCheesePrefix");
 		
 	}
 	
@@ -48,14 +56,28 @@ public class PunishLogger {
 	public boolean addRule(int ruleId, String shortdetail) throws SQLException{
 		
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
-		//TODO add to check if exist
-		try{
-			sql.update("INSERT INTO "+pl.getConfig().getString("db_rules")+" (ruleid, detail) VALUES ('"+ruleId+"', '"+shortdetail+"')");
-			return true;
-		} catch (SQLException e) {
-			throw e;
+		ResultSet rs = sql.query("SELECT * FROM "+db_rules+" WHERE ruleid="+ruleId);
+		if(!(rs.last())){
+			/**
+			 * rs.last() returns false so thats mean no rule at ruleId and it will try to insert row.
+			 */
+			try{
+				sql.update("INSERT INTO "+db_rules+" (ruleid, shortdetail) VALUES ('"+ruleId+"', '"+shortdetail+"')");
+				return true;
+			} catch (SQLException e) {
+				throw e;
+			}
+		}else{
+			/**
+			 * rs.last() returns true so it will update row.
+			 */
+			try{
+				sql.update("UPDATE "+db_rules+" SET shortdetail='"+shortdetail+"' WHERE ruleid='"+ruleId+"'");
+				return true;
+			} catch (SQLException e) {
+				throw e;
+			}
 		}
-		
 	}
 
 }

@@ -29,7 +29,7 @@ public class PunishCheese extends JavaPlugin{
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
 		
 		try {
-			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_rules")+"` (`ruleid` int(3) NOT NULL, `shortdetail` varchar(256) NOT NULL, `detail` varchar(512) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_rules")+"` (`ruleid` int(3) NOT NULL, `shortdetail` varchar(256) NOT NULL, `detail` varchar(512) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 		} catch (SQLException e) {
 			getLogger().info("PunishCheese cannot create table in MySQL. Please check your MySQL setting in config.yml or check your MySQL driver.");
 			e.printStackTrace();
