@@ -24,3 +24,8 @@ commands:
     usage: /rules
     permission: punishcheese.member
     permission-message: You don't have permissions.
+  punish:
+    description: Apple punishment to player.
+    usage: /punish - to view usage.
+    permission: punishcheese.admin
+    permission-message: You don't have permissions.

@@ -63,6 +63,7 @@ public class DatabaseCommand implements CommandExecutor{
 			try {
 				boolean resultLogger = logger.addRule(ruleId, shortdetail);
 				if(resultLogger){
+					logger.log(sender.getName(), "ADD_RULE", ruleId);
 					sender.sendMessage(prefix+"Added/Updated successful.");
 					return true;
 				}
@@ -106,6 +107,7 @@ public class DatabaseCommand implements CommandExecutor{
 			try {
 				boolean resultLogger = logger.addRuleDetail(ruleId, detail);
 				if(resultLogger){
+					logger.log(sender.getName(), "ADD_RULE_DETAIL", ruleId);
 					sender.sendMessage(prefix+"Updated detail for your specific rule.");
 					return true;
 				}else{

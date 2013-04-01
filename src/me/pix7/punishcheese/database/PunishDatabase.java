@@ -3,6 +3,8 @@ package me.pix7.punishcheese.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import me.pix7.punishcheese.PunishCheese;
+
 public class PunishDatabase {
 	
 	me.pix7.punishcheese.PunishCheese pl;
@@ -15,7 +17,7 @@ public class PunishDatabase {
 	String db_rules;
 	String prefix;
 	
-	public PunishDatabase(me.pix7.punishcheese.PunishCheese plugin) {
+	public PunishDatabase(PunishCheese plugin) {
 
 		this.pl = plugin;
 		
@@ -36,11 +38,23 @@ public class PunishDatabase {
 	 * which return true if INSERT goes well
 	 * @throws SQLException 
 	 */
-	public boolean log(String username, String operation, String rulebreaker, int ruleid, String reason) throws SQLException{
+	public boolean log(String username, String operation, String info, int ruleid, String reason) throws SQLException{
 		
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
 		try{
-			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (username, operation, rulebreaker, ruleid, reason) VALUES ('"+username+"', '"+operation+"', '"+rulebreaker+"', '"+ruleid+"', '"+reason+"')");
+			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (username, operation, info, ruleid, reason) VALUES ('"+username+"', '"+operation+"', '"+info+"', '"+ruleid+"', '"+reason+"')");
+			return true;
+		} catch (SQLException e) {
+			throw e;
+		}
+		
+	}
+	
+	public boolean log(String username, String operation, int ruleid) throws SQLException{
+		
+		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
+		try{
+			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (username, operation, ruleid) VALUES ('"+username+"', '"+operation+"', '"+ruleid+"')");
 			return true;
 		} catch (SQLException e) {
 			throw e;
