@@ -39,14 +39,14 @@ public class PunishCheese extends JavaPlugin{
 		}
 		
 		try {
-			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_log")+"` (`id` int(11) NOT NULL AUTO_INCREMENT, 'time' varchar(256) NOT NULL, `username` varchar(20) NOT NULL, `operation` varchar(20) NOT NULL, `info` varchar(20) NULL, `ruleid` int(3) NOT NULL, `reason` varchar(256) NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_log")+"` (`id` int(11) NOT NULL AUTO_INCREMENT, 'time' varchar(256) NOT NULL, `username` varchar(20) NOT NULL, `operation` varchar(20) NOT NULL, `punishtime` varchar(20) NULL, `player` varchar(20) NULL, `ruleid` int(3) NULL, `reason` varchar(256) NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
 		} catch (SQLException e) {
 			getLogger().info("PunishCheese cannot create table in MySQL. Please check your MySQL setting in config.yml or check your MySQL driver.");
 			e.printStackTrace();
 		}
 		
 		try {
-			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_punishment")+"` (`id` int(11) NOT NULL AUTO_INCREMENT, `ruleid` int(3) NOT NULL, `times` int(2) NOT NULL, `punishtype` varchar(20) NOT NULL, `info` varchar(128) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+			sql.update("CREATE TABLE IF NOT EXISTS `"+this.getConfig().getString("temp.db_punishment")+"` (`id` int(11) NOT NULL AUTO_INCREMENT, `ruleid` int(3) NOT NULL, `times` int(2) NOT NULL, `punishtype` varchar(20) NOT NULL, `time` varchar(8) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

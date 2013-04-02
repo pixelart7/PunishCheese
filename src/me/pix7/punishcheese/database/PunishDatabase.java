@@ -38,11 +38,12 @@ public class PunishDatabase {
 	 * which return true if INSERT goes well
 	 * @throws SQLException 
 	 */
-	public boolean log(String username, String operation, String info, int ruleid, String reason) throws SQLException{
+	public boolean log(String username, String operation, int punishtime, String player, int ruleid, String reason) throws SQLException{
 		
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
+		long time = System.currentTimeMillis()/1000;
 		try{
-			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (username, operation, info, ruleid, reason) VALUES ('"+username+"', '"+operation+"', '"+info+"', '"+ruleid+"', '"+reason+"')");
+			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (time, sername, operation, punishtime, player, ruleid, reason) VALUES ('"+time+"', '"+username+"', '"+operation+"', '"+punishtime+"', '"+player+"', '"+ruleid+"', '"+reason+"')");
 			return true;
 		} catch (SQLException e) {
 			throw e;
@@ -53,8 +54,9 @@ public class PunishDatabase {
 	public boolean log(String username, String operation, int ruleid) throws SQLException{
 		
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
+		long time = System.currentTimeMillis()/1000;
 		try{
-			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (username, operation, ruleid) VALUES ('"+username+"', '"+operation+"', '"+ruleid+"')");
+			sql.update("INSERT INTO "+pl.getConfig().getString("db_log")+" (time, username, operation, ruleid) VALUES ('"+time+"', '"+username+"', '"+operation+"', '"+ruleid+"')");
 			return true;
 		} catch (SQLException e) {
 			throw e;

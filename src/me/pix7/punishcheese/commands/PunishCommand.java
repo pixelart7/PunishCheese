@@ -73,6 +73,7 @@ public class PunishCommand implements CommandExecutor{
 			username = username.toLowerCase();
 			
 			PunishMethod punish = new PunishMethod(pl, sender, username, ruleIdint, timesint);
+			int rows = punish.getRows();
 			
 		}
 		

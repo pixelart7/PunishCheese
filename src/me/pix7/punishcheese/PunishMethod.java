@@ -20,6 +20,10 @@ public class PunishMethod {
 	String db_punishment;
 	String prefix;
 	
+	String username;
+	int ruleIdint;
+	int timesint;
+	
 	public PunishMethod(PunishCheese pl, CommandSender sender, String username, int ruleIdint, int timesint){
 		
 		this.dbusername = pl.getConfig().getString("database.username");
@@ -33,18 +37,31 @@ public class PunishMethod {
 		this.db_punishment = pl.getConfig().getString("temp.db_punishment");
 		this.prefix = pl.getConfig().getString("temp.PunishCheesePrefix");
 		
+		this.username = username;
+		this.ruleIdint = ruleIdint;
+		this.timesint = timesint;
+		
+	}
+	
+	public int getRows(){
+		
 		MySQLAPI sql = new MySQLAPI(dbusername, dbpassword, db, ip, port);
-		ResultSet rs = sql.query("SELECT * FROM "+db_punishment+" WHERE player='"+username+"' AND reason='"+ruleIdint+"'");
+		ResultSet rs = sql.query("SELECT * FROM "+db_punishment+" WHERE player='"+username+"' AND ruleid='"+ruleIdint+"'");
+		int rows;
 		try {
 			if(!(rs.last())){
-				int rows = 0;
+				rows = 0;
+				return rows;
 			}else{
 				rs.last();
-				int rows = rs.getRow();
+				rows = rs.getRow();
+				return rows;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		}
+		
 	}
 
 	public void jail(){
